@@ -1,0 +1,28 @@
+<div class="container w100">
+  <div class="row w80">
+    <%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, weeks_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20">
+        <%= form_for(@week, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @week %>
+          <div class="input-group mb-4 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-calendar tcbl fs9"></i></div>
+            <%= f.select :week_day, options_for_select(@week_days, @week.week_day), {prompt:'Select Week Day'}, {class:'form-control bd1 fs11', required: true, style:"height: 30px;"} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-sort-numeric-asc tcbl fs12"></i></div>
+            <%= f.number_field :number_day, class:'form-control bd1', placeholder:'Number Day', required: true, readonly: true %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+@media only screen and (min-width: 992px) and (max-width: 1940px){
+  .drop-size{
+    width: 240px !important;
+  }
+}
+
+@media only screen and (max-width: 991px){
+  .tiny-bg10{
+    background: rgba(219, 221, 222, 0.9) !important; /* light light grey */
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #C2C4C5;
+  }
+
+  .btn-text-sign-out{display: none !important;}
+  .btn-sign-out{
+    position: absolute;
+    right: 4%;
+    margin: 6px 0;
+  }
+}

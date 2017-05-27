@@ -1,0 +1,62 @@
+<div class="container w100">
+  <div class="row w80">
+  	<%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, users_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20 mu2">
+        <%= form_for(@user, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @user %>
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-user tcbl fs14"></i> </div>
+            <%= f.text_field :name, class:'form-control bd1', placeholder:'Name', required: true, autofocus: true %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-users tcbl fs10"></i></div>
+            <%= f.text_field :surname, class:'form-control bd1', placeholder:'Surname', required: true %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-envelope tcbl fs10"></i></div>
+            <%= f.email_field :email, class:'form-control bd1', placeholder:'Email', required: true %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-phone tcbl fs12"></i></div>
+            <%= f.number_field :phone, class:'form-control bd1', placeholder:'phone', required: true %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-id-card tcbl fs9"></i></div>
+            <%= f.number_field :document, class:'form-control bd1', required: true, placeholder:'Document Number' %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :rol_id, options_for_select(@roles.collect{|r| [r.name, r.id]}, @user.rol_id), {prompt:'Select Role'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :semester_id, options_for_select(@semesters.collect{|r| [r.complement_semester, r.id]}, @user.semester_id), {prompt:'Select Semester'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="form-group login-group-checkbox pd-none">
+            <% if @user.active == true %>
+              <%= f.check_box :active, checked: true %>
+            <% else %>
+              <%= f.check_box :active, checked: false %>
+            <% end %>
+            <label for="user_active" class="pdl30 fs12 ml02"> Active </label>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

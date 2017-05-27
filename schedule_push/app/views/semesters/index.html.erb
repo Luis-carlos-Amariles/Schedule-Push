@@ -1,0 +1,43 @@
+<div class="container w100">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'layouts/notice_mvc' %>
+      <div class="col-md-12">
+        <h1 class="pull-left mb4">Listing Semesters</h1>
+        <% if @semesters.count <= 12 %>
+          <%= link_to 'New Semester', new_semester_path, class:'btn btn-primary btn-sm pull-right tcw mb4' %>
+        <% end %>
+      </div>
+      <div class="col-md-10 offset-md-1 mt5">
+        <table class="table table-hover table-sm mt5">
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Level</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @semesters.each do |semester| %>
+              <tr>
+                <td><%= semester.number %></td>
+                <td><%= semester.level %></td>
+                <td><%= link_to "<i class='fa fa-pencil fs13'></i>".html_safe, edit_semester_path(semester), class:'tcw fs10', :'data-toggle'=>'tooltip', title:'EDITAR' %></td>
+                <td><%= link_to "<i class='fa fa-trash fs13'></i>".html_safe, semester, method: :delete, data: { confirm: 'Estas Segur@ ?' }, class:'tcw fs10', :'data-toggle'=>'tooltip', title:'ELIMINAR' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+          <% if @semesters.count > 5 %>
+            <tfoot class="bg10 bd4">
+              <tr>
+                <th>Number</th>
+                <th>Level</th>
+                <th colspan="3"></th>
+              </tr>
+            </tfoot>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

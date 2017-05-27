@@ -1,0 +1,41 @@
+<div class="container w100">
+  <div class="row w80">
+    <%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, scheduleds_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20">
+        <%= form_for(@scheduled, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @scheduled %>
+          <label class="sr-only mt5" for="scheduled_block">Block</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-sort-numeric-asc tcbl fs12"></i> </div>
+            <%= f.number_field :block, class:'form-control bd1 validate_length', placeholder:'Block', required: true, maxlength:'1', autofocus: true %>
+          </div>
+
+          <label class="sr-only mt5" for="scheduled_start_hour">Hour</label>
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :start_hour, options_for_select(@scheduled_hours, @scheduled.start_hour), {prompt:'Select Initial Hour'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :teacher_by_matter_id, options_for_select(@teacher_by_matters.collect{|r| [r.teacher_with_matter, r.id]}, @scheduled.teacher_by_matter_id), {prompt:'Select Scheduled'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :week_id, options_for_select(@weeks.collect{|r| [r.week_day, r.id]}, @scheduled.week_id), {prompt:'Select Week Day'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

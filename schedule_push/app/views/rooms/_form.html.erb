@@ -1,0 +1,36 @@
+<div class="container w100">
+  <div class="row w80">
+    <%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, rooms_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20">
+        <%= form_for(@room, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @room %>
+          <label class="sr-only mt5" for="room_code">Code</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-sort-numeric-asc tcbl fs13"></i> </div>
+            <%= f.number_field :code, class:'form-control bd1', placeholder:'Code', required: true, maxlength:'3' %>
+          </div>
+
+          <label for="room_name" class="sr-only mt2">Name</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-university tcbl fs9"></i></div>
+            <%= f.text_field :name, class:'form-control bd1', placeholder:'Name', required: true %>
+          </div>
+
+          <label class="sr-only mt5" for="room_floor">Floor</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-building-o tcbl fs13"></i> </div>
+            <%= f.number_field :floor, class:'form-control bd1 validate_length', placeholder:'Floor', required: true, maxlength:'1' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

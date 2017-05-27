@@ -1,0 +1,34 @@
+<div class="container w100">
+  <div class="row w80">
+    <%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, devices_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20">
+        <%= form_for(@device, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @device %>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-sort-numeric-asc tcbl fs10"></i> </div>
+            <%= f.text_field :token, class:'form-control bd1 validate_length', placeholder:'Token', required: true, autofocus: true, maxlength:'20' %>
+          </div>
+
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon"><i class="fa fa-tag tcbl fs10"></i> </div>
+            <%= f.text_field :installation_id, class:'form-control bd1 validate_length', placeholder:'Installation ID', required: true, maxlength:'20' %>
+          </div>
+
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-mobile tcbl fs14"></i> </div>
+            <%= f.select :app_id, options_for_select(@apps.collect{|a| [a.name, a.id]}, @device.app_id), {prompt:'Select App'}, {class:'form-control bd1 fs11', required: true, style:'height: 32px;'} %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

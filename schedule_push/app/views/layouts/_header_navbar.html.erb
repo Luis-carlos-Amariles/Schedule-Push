@@ -1,0 +1,81 @@
+<% if current_user.present? %>
+	<header>
+		<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+		  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+		  			  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <%= link_to 'Push', home_path, class:'navbar-brand fs16' %>
+		  <div class="collapse navbar-collapse elevation-navbar" id="navbarNavDropdown">
+		    <ul class="navbar-nav tiny-bg10">
+		      <li class="nav-item">
+		      	<%= link_to home_path, class:'nav-link ml4 tcbd link-active', id:'home' do %>
+		      		<span class="inlb w80x"><i class="fa fa-home fs11"></i> Home</span>
+		      	<% end %>
+		      </li>
+		      <li class="nav-item">
+		        <%= link_to users_index_path, class:'nav-link ml4 tcbd link-active', id:'user-index' do %>
+		        	<span class="inlb w80x"><i class="fa fa-users fs10"></i> Users</span>
+		        <% end %>
+		      </li>
+		      <li class="nav-item">
+		        <%= link_to rooms_path, class:'nav-link ml4 tcbd link-active', id:'room' do %>
+		        	<span class="inlb w80x"><i class="fa fa-university fs10"></i> Rooms</span>
+		        <% end %>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle tcbd" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		         Complements Push
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		        	<%= link_to devices_path, class:'dropdown-item tcbd link-active', id:'device' do %>
+		        		<span class="inlb w80x"><i class="fa fa-mobile fs10"></i> &nbsp;Devices</span>
+		        	<% end %>
+		        	<%= link_to apps_path, class:'dropdown-item tcbd link-active', id:'app' do %>
+		        		<span class="inlb w80x"><i class="fa fa-tag fs10"></i> &nbsp;Apps</span>
+		        	<% end %>
+		        	<%= link_to semesters_path, class:'dropdown-item tcbd link-active', id:'semester' do %>
+		        		<span class="inlb w80x"><i class="fa fa-sitemap fs10"></i> &nbsp;Semesters</span>
+		        	<% end %>
+		        </div>
+		      </li>
+
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle tcbd" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		         Admins
+		        </a>
+		        <div class="dropdown-menu drop-size" aria-labelledby="navbarDropdownMenuLink">
+		        	<%= link_to rols_path, class:'dropdown-item tcbd link-active', id:'rol' do %>
+		        		<span class="inlb w80x"><i class="fa fa-users fs10"></i> &nbsp;Roles</span>
+		        	<% end %>
+		        	<%= link_to matters_path, class:'dropdown-item tcbd link-active', id:'matter' do %>
+		        		<span class="inlb w80x"><i class="fa fa-book fs10"></i> &nbsp;Matters</span>
+		        	<% end %>
+		        	<%= link_to notifications_path, class:'dropdown-item tcbd link-active', id:'notification' do %>
+		        		<span class="inlb w80x"><i class="fa fa-envelope fs10"></i> &nbsp;Notifications</span>
+		        	<% end %>
+		        	<%= link_to scheduleds_path, class:'dropdown-item tcbd link-active', id:'scheduled' do %>
+		        		<span class="inlb w80x"><i class="fa fa-calendar-o fs10"></i> &nbsp;Schedules</span>
+		        	<% end %>
+		        	<%= link_to users_by_scheduleds_path, class:'dropdown-item tcbd link-active', id:'user_by_scheduled' do %>
+		        		<span class="inlb w80x"><i class="fa fa-tasks fs10"></i> &nbsp;Scheduled Notifications</span>
+		        	<% end %>
+		        	<%= link_to teacher_by_matters_path, class:'dropdown-item tcbd link-active', id:'teacher_by_matter' do %>
+		        		<span class="inlb w80x"><i class="fa fa-book fs10"></i>&nbsp; Teacher by Matter</span>
+		        	<% end %>
+		        	<%= link_to weeks_path, class:'dropdown-item tcbd link-active', id:'teacher_by_matter' do %>
+		        		<span class="inlb w80x"><i class="fa fa-book fs10"></i>&nbsp; Week</span>
+		        	<% end %>
+		        </div>
+		      </li>
+		    </ul>
+
+		    <% if current_user.present? %>
+		    	<%= link_to destroy_user_session_path, method: :delete, class:"btn bg1 btn-sm btn-bordered pull-right nav-link tcw btn-sign-out" do %>
+		    		<i class="fa fa-sign-out fs11"></i> <span class="btn-text-sign-out">Salir</span>
+		    	<% end %>
+		    <% end %>
+		  </div>
+		</nav>
+	</header>
+<% end %>

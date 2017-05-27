@@ -1,0 +1,34 @@
+<div class="container w100">
+  <div class="row w80">
+    <%= link_to '<i class="fa fa-arrow-left fs12 tcw"></i>'.html_safe, teacher_by_matters_path, class:'pull-right inlb' %>
+    <div class="title-content inlb">
+      <h3><%= title %></h3>
+    </div>
+    <div class="col-md-12">
+      <div class="ls1 col-md-10 offset-md-1 pd20 mu2">
+        <%= form_for(@teacher_by_matter, html:{class:'bg10 pd10 bd10 col-md-8 offset-md-2'}) do |f| %>
+          <%= render 'layouts/errors', object: @teacher_by_matter %>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :matter_id, options_for_select(@matters.collect{|r| [r.name, r.id]}, @teacher_by_matter.matter_id), {prompt:'Select Matter'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :room_id, options_for_select(@rooms.collect{|r| [r.code_with_name, r.id]}, @teacher_by_matter.room_id), {prompt:'Select Room'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="input-group mb-3 mr-sm-2">
+            <div class="input-group-addon pd-icon"><i class="fa fa-suitcase tcbl fs10"></i></div>
+            <%= f.select :user_id, options_for_select(@users.collect{|r| [r.name_with_surname, r.id]}, @teacher_by_matter.user_id), {prompt:'Select Teacher'}, {class:'form-control bd1', required: true, style:'height: 30px;'} %>
+          </div>
+
+          <div class="form-group">
+            <%= f.submit 'Submit', class:'btn btn-primary btn-sm btn-bordered btn-block ds1' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

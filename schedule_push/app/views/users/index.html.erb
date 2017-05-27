@@ -1,0 +1,67 @@
+<div class="container w100">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'layouts/notice_mvc' %>
+      <div class="col-md-12">
+        <h1 class="pull-left mb4">Listing Users</h1>
+        <%= link_to 'New User', new_user_path, class:'btn btn-primary btn-sm pull-right tcw mb4' %>
+      </div>
+      <div class="col-md-10 offset-md-1 mt5">
+        <table class="table table-hover table-sm mt5">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Email</th>
+              <th>Rol</th>
+              <th>State</th>
+              <th>Semester</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.document %></td>
+                <td><%= user.name %></td>
+                <td><%= user.surname %></td>
+                <td><%= user.email %></td>
+                <td><%= user.rol.name %></td>
+                <td>
+                  <% if user.active == true %>
+                    <i class="fa fa-check-square text-success fs12"></i>
+                  <% else %>
+                    <i class="fa fa-times-circle text-danger fs12"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <% if user.rol.code == 301 && user.semester_id.present? %>
+                    <%= user.semester.number %> - <%= user.semester.level %>
+                  <% end %>
+                </td>
+                <td><%= link_to "<i class='fa fa-pencil fs13'></i>".html_safe, edit_user_path(user), class:'tcw fs10', :'data-toggle'=>'tooltip', title:'EDITAR' %></td>
+                <td><%= link_to "<i class='fa fa-trash fs13'></i>".html_safe, user, method: :delete, data: { confirm: 'Estas Segur@ ?' }, class:'tcw fs10', :'data-toggle'=>'tooltip', title:'ELIMINAR' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+          <% if @users.count > 5 %>
+            <tfoot class="bg10 bd4">
+              <tr>
+                <th>Document</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>State</th>
+                <th>Semester</th>
+                <th colspan="3"></th>
+              </tr>
+            </tfoot>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

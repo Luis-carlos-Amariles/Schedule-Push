@@ -1,0 +1,8 @@
+<% if object.errors.any?  %>
+  <div class="alert alert-danger dark alert-dismissable">
+    <button aria-hidden="true" data-dismiss="alert" class="close" type="button" >×</button>
+      <% object.errors.full_messages.each do |message| %>
+        <article align="left" class="fs10 ml02"><%= message %></article>
+      <% end %>
+  </div>
+<% end %><br>
